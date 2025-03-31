@@ -52,7 +52,7 @@ export default function SearchPage() {
     <Suspense fallback={
       <div className="container mx-auto px-4 pt-20">
         <div className="text-center text-gray-500 py-12">
-          加载中...
+          Loading...
         </div>
       </div>
     }>

@@ -10,7 +10,7 @@ interface GameCardProps {
 }
 
 export function GameCard({ game, priority = false }: GameCardProps) {
-  // 从 URL 中提取游戏名称和 UUID，添加错误处理
+  // Extract game name and UUID from URL, add error handling
   let gameSlug = '';
   let gameId = '';
   
@@ -27,7 +27,7 @@ export function GameCard({ game, priority = false }: GameCardProps) {
   return (
     <Link href={`/games/${gameSlug}/${gameId}`}>
       <div className="group relative bg-muted rounded-lg overflow-hidden transition-transform hover:scale-105">
-        {/* 游戏图片 */}
+        {/* Game Image */}
         <div className="aspect-square relative">
           <Image
             src={game.icons.large}
@@ -39,7 +39,7 @@ export function GameCard({ game, priority = false }: GameCardProps) {
           />
         </div>
 
-        {/* 游戏信息 */}
+        {/* Game Info */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-4">
           <h3 className="text-white font-semibold mb-1 line-clamp-1">{game.name}</h3>
           <div className="flex gap-2 flex-wrap">
@@ -54,7 +54,7 @@ export function GameCard({ game, priority = false }: GameCardProps) {
           </div>
         </div>
 
-        {/* 热度指标 */}
+        {/* Popularity */}
         <div className="absolute top-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
           Popularity: {game.popularity}
         </div>

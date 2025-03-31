@@ -22,12 +22,12 @@ export function Navbar() {
             <span className="text-2xl font-bold text-primary">HTML5Games</span>
           </Link>
 
-          {/* 搜索框 */}
+          {/* Search Bar */}
           <div className="flex-1 max-w-2xl mx-8">
             <SearchBar />
           </div>
 
-          {/* 导航链接 */}
+          {/* Navigation Links */}
           <div className="flex items-center space-x-6">
             {navLinks.map(link => (
               <Link

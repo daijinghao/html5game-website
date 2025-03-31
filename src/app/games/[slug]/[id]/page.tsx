@@ -10,7 +10,7 @@ interface GamePageProps {
 }
 
 export default function GamePage({ params }: GamePageProps) {
-  // 查找游戏信息，添加错误处理
+  // Find game information, add error handling
   const game = games.find(g => {
     try {
       const urlParts = g.url?.split('/') || [];
@@ -23,7 +23,7 @@ export default function GamePage({ params }: GamePageProps) {
     }
   });
 
-  // 如果游戏不存在，返回 404
+  // If game doesn't exist, return 404
   if (!game) {
     notFound();
   }
@@ -31,7 +31,7 @@ export default function GamePage({ params }: GamePageProps) {
   return (
     <div className="container mx-auto px-4 pt-20">
       <div className="max-w-6xl mx-auto">
-        {/* 游戏标题和分类 */}
+        {/* Game Title and Categories */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">{game.name}</h1>
           <div className="flex gap-2 flex-wrap">
@@ -46,7 +46,7 @@ export default function GamePage({ params }: GamePageProps) {
           </div>
         </div>
 
-        {/* 游戏内容 */}
+        {/* Game Content */}
         <div className="bg-black rounded-lg overflow-hidden mb-8">
           <iframe
             src={game.iframeUrl}
@@ -55,7 +55,7 @@ export default function GamePage({ params }: GamePageProps) {
           ></iframe>
         </div>
 
-        {/* 游戏描述 */}
+        {/* Game Description */}
         <div className="prose max-w-none">
           <h2 className="text-xl font-semibold mb-4">Game Description</h2>
           <p className="text-gray-600">{game.description}</p>
@@ -65,7 +65,7 @@ export default function GamePage({ params }: GamePageProps) {
   );
 }
 
-// 生成所有可能的游戏路径
+// Generate all possible game paths
 export function generateStaticParams() {
   return games.map(game => {
     try {

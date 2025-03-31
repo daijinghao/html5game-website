@@ -1,7 +1,7 @@
 import { Game, GameCategory } from '@/types/game';
 import gamesData from './games.json';
 
-// 分类图标映射
+// Category icon mapping
 const categoryIcons: Record<string, string> = {
   'Action': 'https://img.cdn.famobi.com/portal/html5games/images/tmp/180/BubbleWoodsTeaser.jpg',
   'Arcade': 'https://img.cdn.famobi.com/portal/html5games/images/tmp/180/TowerCrash3dTeaser.jpg',
@@ -26,13 +26,14 @@ const categoryIcons: Record<string, string> = {
   'Strategy': 'https://img.cdn.famobi.com/portal/html5games/images/tmp/180/ChessClassicTeaser.jpg'
 };
 
-// 生成固定的热度值（基于游戏 ID）
+// Generate fixed popularity values (based on game ID)
+// Use game ID to generate fixed values between 8-10
 function generateStaticPopularity(id: number): number {
-  // 使用游戏 ID 作为种子生成 8-10 之间的固定值
-  return 8 + (id % 1000) / 500; // 将 id 映射到 0-2 之间，然后加 8
+  // Use game ID as seed to generate fixed values between 8-10
+  return 8 + (id % 1000) / 500; // Map id to 0-2 range, then add 8
 }
 
-// 预先排序的游戏列表
+// Pre-sorted game list
 const processedGames = gamesData.map(game => ({
   id: game.id.toString(),
   name: game.name,
@@ -45,22 +46,22 @@ const processedGames = gamesData.map(game => ({
     medium: game.icons.medium.split('?')[0],
     large: game.icons.large.split('?')[0]
   },
-  popularity: generateStaticPopularity(game.id), // 使用基于 ID 的固定热度值
+  popularity: generateStaticPopularity(game.id), // Use ID-based fixed popularity value
   createdAt: game.created_at
 }));
 
-// 缓存排序后的列表
+// Cache sorted lists
 const popularGamesCache = [...processedGames].sort((a, b) => b.popularity - a.popularity);
 const newGamesCache = [...processedGames].sort((a, b) => 
   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
 );
 
-// 导出缓存的列表
+// Export cached lists
 export const popularGames = popularGamesCache;
 export const newGames = newGamesCache;
 export const games = processedGames;
 
-// 从游戏数据中提取所有唯一的分类
+// Get all unique categories from game data
 const uniqueCategories = Array.from(
   new Set(
     gamesData.flatMap(game => 
@@ -69,10 +70,10 @@ const uniqueCategories = Array.from(
   )
 ).sort();
 
-// 创建分类数据
+// Create category data
 export const categories: GameCategory[] = uniqueCategories.map(name => ({
   id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
   name,
-  icon: categoryIcons[name] || categoryIcons['Arcade'], // 如果没有找到对应图标，使用 Arcade 的图标作为默认值
-  description: `${name}类游戏`
+  icon: categoryIcons[name] || categoryIcons['Arcade'], // Use Arcade icon as default if no matching icon found
+  description: `${name} Game`
 })); 

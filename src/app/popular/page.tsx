@@ -9,8 +9,8 @@ export default function PopularGamesPage() {
   return (
     <div className="container mx-auto px-4 pt-20">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">热门游戏</h1>
-        <p className="text-gray-600 mt-2">最受欢迎的游戏列表</p>
+        <h1 className="text-3xl font-bold">Popular Games</h1>
+        <p className="text-gray-600 mt-2">List of most popular games</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
