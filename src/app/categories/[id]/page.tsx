@@ -28,7 +28,7 @@ export default function CategoryPage({ params }: Props) {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">{category.name}</h1>
         <p className="text-gray-600">{category.description}</p>
-        <p className="text-sm text-gray-500 mt-2">共 {categoryGames.length} 个游戏</p>
+        <p className="text-sm text-gray-500 mt-2">{categoryGames.length} games</p>
       </div>
 
       {/* 游戏列表 */}
@@ -38,13 +38,13 @@ export default function CategoryPage({ params }: Props) {
             <GameCard 
               key={game.id} 
               game={game}
-              priority={index < 5} // 只给前5个游戏添加 priority
+              priority={index < 5} // Only add priority to first 5 games
             />
           ))}
         </div>
       ) : (
         <div className="text-center text-gray-500 py-12">
-          该分类下暂无游戏
+          No games in this category
         </div>
       )}
     </div>

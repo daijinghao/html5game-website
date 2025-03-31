@@ -8,9 +8,9 @@ export function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/categories', label: '分类' },
-    { href: '/popular', label: '热门' },
-    { href: '/new', label: '最新' },
+    { href: '/categories', label: 'Categories' },
+    { href: '/popular', label: 'Popular' },
+    { href: '/new', label: 'New' },
   ];
 
   return (

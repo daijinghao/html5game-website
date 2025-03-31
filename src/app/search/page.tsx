@@ -26,9 +26,9 @@ function SearchResults() {
     <div className="container mx-auto px-4 pt-20">
       <h1 className="text-2xl font-bold mb-6">
         {searchTerm ? (
-          <>搜索 &quot;{searchParams.get('q')}&quot; 的结果 ({searchResults.length})</>
+          <>Search results for &quot;{searchParams.get('q')}&quot; ({searchResults.length})</>
         ) : (
-          '请输入搜索关键词'
+          'Please enter a search term'
         )}
       </h1>
 
@@ -40,7 +40,7 @@ function SearchResults() {
         </div>
       ) : searchTerm && (
         <div className="text-center text-gray-500 py-12">
-          没有找到相关游戏
+          No games found
         </div>
       )}
     </div>

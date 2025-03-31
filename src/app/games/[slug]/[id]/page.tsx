@@ -57,7 +57,7 @@ export default function GamePage({ params }: GamePageProps) {
 
         {/* 游戏描述 */}
         <div className="prose max-w-none">
-          <h2 className="text-xl font-semibold mb-4">游戏介绍</h2>
+          <h2 className="text-xl font-semibold mb-4">Game Description</h2>
           <p className="text-gray-600">{game.description}</p>
         </div>
       </div>

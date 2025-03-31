@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HTML5Games - 在线小游戏平台",
-  description: "HTML5Games 是一个免费的在线小游戏平台，提供多种类型的休闲游戏。",
+  title: "HTML5Games - Online Gaming Platform",
+  description: "HTML5Games is a free online gaming platform offering various types of casual games.",
   other: {
     'next-router-prefetch': 'true',
   },

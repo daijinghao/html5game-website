@@ -30,7 +30,7 @@ export default function Home() {
               <div className="relative">
                 <input
                   className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                  placeholder="搜索游戏..."
+                  placeholder="Search games..."
                   type="search"
                 />
               </div>
@@ -43,13 +43,13 @@ export default function Home() {
       <main className="container mx-auto pt-20 px-4">
         {/* 热门游戏轮播 */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">热门游戏</h2>
+          <h2 className="text-2xl font-bold mb-4">Popular Games</h2>
           <GameCarousel games={featuredGames} />
         </section>
 
         {/* 游戏分类 */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">游戏分类</h2>
+          <h2 className="text-2xl font-bold mb-4">Game Categories</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categories.map((category) => (
               <CategoryCard key={category.id} category={category} />
@@ -59,7 +59,7 @@ export default function Home() {
 
         {/* 最新游戏 */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">最新游戏</h2>
+          <h2 className="text-2xl font-bold mb-4">New Games</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {latestGames.map((game) => (
               <GameCard key={game.id} game={game} />
