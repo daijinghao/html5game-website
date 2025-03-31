@@ -1,27 +1,32 @@
+'use client';
+
 import { games } from '@/data/games';
 import { GameCard } from '@/components/GameCard';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
 
-interface SearchPageProps {
-  searchParams: { q?: string };
-}
-
-export default function SearchPage({ searchParams }: SearchPageProps) {
-  const searchTerm = searchParams.q?.toLowerCase() || '';
+function SearchResults() {
+  const searchParams = useSearchParams();
+  const [searchResults, setSearchResults] = useState(games);
+  const searchTerm = searchParams.get('q')?.toLowerCase() || '';
   
-  const searchResults = games.filter(game => {
-    const matchName = game.name.toLowerCase().includes(searchTerm);
-    const matchDescription = game.description.toLowerCase().includes(searchTerm);
-    const matchCategories = game.categories.some(cat => 
-      cat.toLowerCase().includes(searchTerm)
-    );
-    return matchName || matchDescription || matchCategories;
-  });
+  useEffect(() => {
+    const results = games.filter(game => {
+      const matchName = game.name.toLowerCase().includes(searchTerm);
+      const matchDescription = game.description.toLowerCase().includes(searchTerm);
+      const matchCategories = game.categories.some(cat => 
+        cat.toLowerCase().includes(searchTerm)
+      );
+      return matchName || matchDescription || matchCategories;
+    });
+    setSearchResults(results);
+  }, [searchTerm]);
 
   return (
     <div className="container mx-auto px-4 pt-20">
       <h1 className="text-2xl font-bold mb-6">
         {searchTerm ? (
-          <>搜索 &quot;{searchParams.q}&quot; 的结果 ({searchResults.length})</>
+          <>搜索 &quot;{searchParams.get('q')}&quot; 的结果 ({searchResults.length})</>
         ) : (
           '请输入搜索关键词'
         )}
@@ -39,5 +44,19 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 pt-20">
+        <div className="text-center text-gray-500 py-12">
+          加载中...
+        </div>
+      </div>
+    }>
+      <SearchResults />
+    </Suspense>
   );
 } 
