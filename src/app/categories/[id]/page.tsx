@@ -1,14 +1,14 @@
 import { games, categories } from '@/data/games';
 import { GameCard } from '@/components/GameCard';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
-interface CategoryPageProps {
-  params: {
-    id: string;
-  };
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ params }: Props) {
   // 查找分类信息
   const category = categories.find(cat => cat.id === params.id);
   
@@ -56,4 +56,18 @@ export function generateStaticParams() {
   return categories.map(category => ({
     id: category.id,
   }));
+}
+
+// 生成元数据
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const category = categories.find(cat => cat.id === params.id);
+  if (!category) {
+    return {
+      title: '分类不存在',
+    };
+  }
+  return {
+    title: `${category.name} - HTML5游戏`,
+    description: category.description,
+  };
 } 
